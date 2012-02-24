@@ -1,0 +1,14 @@
+.DS_Store
+._*
+bin
+include
+lib
+.Python
+.*swp
+*.pyc
+*.pyo
+logs
+pid
+sock
+webroot
+build
