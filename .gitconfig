@@ -1,0 +1,11 @@
+[user]
+	email = rochacon@gmail.com
+	name = Rodrigo Chacon
+
+[color]
+	ui = true
+
+[alias]
+	sync = "!f() { echo Syncing this branch with master && git checkout master && git pull origin master && git checkout - && git rebase master; }; f"
+	merge-into-master = "!f() { echo Merging this branch into master && git checkout master && git merge - ; }; f"
+
