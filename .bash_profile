@@ -2,8 +2,9 @@
 export PATH="~/bin:/usr/local/bin:/usr/local/sbin:/usr/local/pgsql/bin:$PATH";
 export EDITOR="vim"
 
-PS1='\[\033[01;32m\]\u\[\033[00m\] \h > `uptime`\n \w \$ ' 
-#PS1='\w \$ ' 
+PS1=' $(date +'%H:%M:%S') | \[\033[01;32m\]\u\[\033[00m\] \w \$ '
+#PS1='\[\033[G\]\[\033[01;32m\]\u\[\033[00m\] \h > `uptime`\n \w \$ ' 
+#PS1='\[\033[G\]\w \$ ' 
 
 # Git bash completion
 source /usr/local/etc/bash_completion.d/git-completion.bash
