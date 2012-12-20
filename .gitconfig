@@ -1,11 +1,13 @@
 [user]
-	email = rochacon@gmail.com
 	name = Rodrigo Chacon
+	email = rochacon@gmail.com
 
 [color]
-	ui = true
+	ui = on
 
 [alias]
-	sync = "!f() { echo Syncing this branch with master && git checkout master && git pull origin master && git checkout - && git rebase master; }; f"
-	merge-into-master = "!f() { echo Merging this branch into master && git checkout master && git merge - ; }; f"
+	sync = "!f() { git checkout $1 && git pull origin $1 && git checkout - ; }; f"
+	current-branch = "!f() { git rev-parse --abbrev-ref HEAD; }; f"
 
+[push]
+	default = upstream
