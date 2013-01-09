@@ -23,11 +23,11 @@ fi
 
 # Vagrant
 if [ -d "/opt/vagrant/bin" ]; then
-    PATH="~/bin:$PATH:/opt/vagrant/bin";
+    PATH="$PATH:/opt/vagrant/bin";
 fi
 
 # Golang
 if [ -d "/opt/go/bin" ]; then
-    PATH="~/bin:$PATH:/opt/go/bin";
+    PATH="$PATH:/opt/go/bin";
 fi
 
