@@ -1,4 +1,5 @@
 ### Bash profile for Rodrigo Chacon
+[ -e "$HOME/.profile" ] && source $HOME/.profile
 
 #Bash options
 # don't put duplicate lines or lines starting with space in the history.
@@ -12,16 +13,11 @@ shopt -s histappend
 HISTSIZE=1000
 HISTFILESIZE=2000
 
-# Globals
-export PATH="~/bin:$PATH";
+# VIM to rule them all!!
 export EDITOR="vim"
 
-PS1=' $(date +'%H:%M:%S') | \[\033[01;32m\]\u\[\033[00m\] \w \$ '
-#PS1='\[\033[G\]\[\033[01;32m\]\u\[\033[00m\] \h > `uptime`\n \w \$ ' 
-#PS1='\[\033[G\]\w \$ ' 
-
 # Virtualenvwrapper
-source /usr/local/bin/virtualenvwrapper_lazy.sh
+source /usr/local/bin/virtualenvwrapper.sh
 
 # aliases
 alias ls='ls -sh --group-directories-first --color=auto'
@@ -45,4 +41,26 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
+
+# Dropbox inotify watcher limit fix (best place to put this code is in /etc/rc.local)
+alias dropbox-inotify-fix="dropbox stop && echo 100000 | sudo tee /proc/sys/fs/inotify/max_user_watches ; dropbox start"
+
+# Mount MySQL in ram
+function mysql-ram {
+    mkdir -p /tmp/mysqlfs
+    sudo mount -t tmpfs -o size=1024m tmpfs /tmp/mysqlfs
+    sudo -u mysql -- cp -rf /var/lib/mysql /tmp/mysqlfs
+    sudo chown -R mysql:mysql /tmp/mysqlfs
+    sudo service mysql restart
+}
+
+# Autoenv
+source /home/rochacon/dev/src/github.com/kennethreitz/autoenv/activate.sh
+
+# Powerline-Bash
+function _update_ps1()
+{
+    export PS1="$($HOME/dev/src/github.com/milkbikis/powerline-bash/powerline-bash.py $?)"
+}
+export PROMPT_COMMAND="_update_ps1"
 
