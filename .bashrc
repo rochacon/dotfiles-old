@@ -27,8 +27,11 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 alias flv2mp3='ffmpeg -ar 44100 -ab 128k -i'
-alias random_pass="python -c \"import string, random ; print ''.join(random.choice(string.letters + string.digits) for x in range(10))\""
 alias djgrep="grep --exclude=.svn --exclude=.git --exclude=*.pyc --color -n"
+
+function random_pass {
+    python -c "import string, random ; print ''.join(random.choice(string.letters + string.digits) for x in range($1))"
+}
 
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
