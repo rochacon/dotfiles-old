@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -xe
 # Install all this stuff. =)
 
 # Bash and environment
@@ -19,11 +19,15 @@ cp -r {.,~}/.vim
 # External dependencies
 
 # Autoenv
-autoenv="~/dev/src/github.com/kennethreitz"
-if [ ! -d "$autoenv/autoenv/.git" ]; then
-    mkdir -p "$autoenv"
-    cd "$autoenv"
+kennethreitz="~/dev/src/github.com/kennethreitz"
+if [ ! -d "$kennethreitz/autoenv" ]; then
+    mkdir -p "$kennethreitz"
+    cd "$kennethreitz"
     git clone git://github.com/kennethreitz/autoenv.git
+    cd -
+else
+    cd "$kennethreitz"
+    git pull
     cd -
 fi
 
@@ -33,6 +37,10 @@ if [ ! -d "$powerline" ]; then
     mkdir -p "$powerline"
     cd "$powerline"
     git clone git://github.com/milkbikis/powerline-bash.git
+    cd -
+else
+    cd "$powerline"
+    git pull
     cd -
 fi
 
