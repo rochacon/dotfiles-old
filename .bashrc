@@ -15,7 +15,7 @@ HISTFILESIZE=2000
 export EDITOR="vim"
 
 # Virtualenvwrapper
-source /usr/local/bin/virtualenvwrapper.sh
+source /usr/local/bin/virtualenvwrapper_lazy.sh
 
 # aliases
 alias ls='ls -sh --group-directories-first --color=auto'
