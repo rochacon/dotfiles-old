@@ -61,7 +61,6 @@ source /home/rochacon/dev/src/github.com/kennethreitz/autoenv/activate.sh
 # Powerline-Bash
 function _update_ps1()
 {
-    export PS1="$($HOME/dev/src/github.com/milkbikis/powerline-bash/powerline-bash.py $?)"
+    export PS1="$($HOME/dev/src/github.com/milkbikis/powerline-shell/powerline-shell.py $?)"
 }
 export PROMPT_COMMAND="_update_ps1"
-

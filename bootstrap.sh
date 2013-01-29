@@ -19,24 +19,24 @@ cp -r {.,~}/.vim
 # External dependencies
 
 # Autoenv
-kennethreitz="~/dev/src/github.com/kennethreitz"
-if [ ! -d "$kennethreitz/autoenv" ]; then
-    mkdir -p "$kennethreitz"
-    cd "$kennethreitz"
+autoenv="$HOME/dev/src/github.com/kennethreitz/autoenv"
+if [ ! -d "$autoenv" ]; then
+    mkdir -p "$autoenv"
+    cd "$autoenv"
     git clone git://github.com/kennethreitz/autoenv.git
     cd -
 else
-    cd "$kennethreitz"
+    cd "$autoenv"
     git pull
     cd -
 fi
 
 # Powerline-bash
-powerline="~/dev/src/github.com/milkbikis/powerline-bash"
+powerline="$HOME/dev/src/github.com/milkbikis/powerline-shell"
 if [ ! -d "$powerline" ]; then
     mkdir -p "$powerline"
     cd "$powerline"
-    git clone git://github.com/milkbikis/powerline-bash.git
+    git clone git://github.com/milkbikis/powerline-shell.git
     cd -
 else
     cd "$powerline"
