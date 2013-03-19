@@ -12,7 +12,7 @@ HISTSIZE=1000
 HISTFILESIZE=2000
 
 # Patch the PATH =)
-export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin";
 
 # VIM to rule them all!!
 export EDITOR="vim"
