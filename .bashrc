@@ -11,11 +11,17 @@ shopt -s histappend
 HISTSIZE=1000
 HISTFILESIZE=2000
 
+# Patch the PATH =)
+export PATH="$HOME/bin:$PATH"
+
 # VIM to rule them all!!
 export EDITOR="vim"
 
 # Virtualenvwrapper
-source /usr/local/bin/virtualenvwrapper_lazy.sh
+venvwrapper_linux="/usr/local/bin/virtualenvwrapper_lazy.sh"
+venvwrapper_mac="/usr/local/share/python/virtualenvwrapper_lazy.sh"
+[ -x "$venvwrapper_linux" ] && source "$venvwrapper_linux"
+[ -x "$venvwrapper_mac" ] && source "$venvwrapper_mac"
 
 # aliases
 alias ls='ls -sh --group-directories-first --color=auto'
@@ -56,7 +62,7 @@ function mysql-ram {
 }
 
 # Autoenv
-source /home/rochacon/dev/src/github.com/kennethreitz/autoenv/activate.sh
+source "$HOME/dev/src/github.com/kennethreitz/autoenv/activate.sh"
 
 # Powerline-Bash
 function _update_ps1()
