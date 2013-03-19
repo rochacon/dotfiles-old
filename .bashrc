@@ -17,14 +17,29 @@ export PATH="$HOME/bin:$PATH"
 # VIM to rule them all!!
 export EDITOR="vim"
 
+# Dumb check for system
+if [ `uname -s` = "Darwin" ]; then
+    ISMAC="1"
+else
+    ISMAC="0"
+fi
+
 # Virtualenvwrapper
 venvwrapper_linux="/usr/local/bin/virtualenvwrapper_lazy.sh"
 venvwrapper_mac="/usr/local/share/python/virtualenvwrapper_lazy.sh"
-[ -x "$venvwrapper_linux" ] && source "$venvwrapper_linux"
-[ -x "$venvwrapper_mac" ] && source "$venvwrapper_mac"
+if [ "$ISMAC" ]; then
+    [ -x "$venvwrapper_mac" ] && source "$venvwrapper_mac"
+else
+    [ -x "$venvwrapper_linux" ] && source "$venvwrapper_linux"
+fi
 
 # aliases
-alias ls='ls -sh --group-directories-first --color=auto'
+if [ "$ISMAC" ]; then
+    alias ls='ls -shG'
+else
+    alias ls='ls -sh --group-directories-first --color=auto'
+fi
+
 alias l='ls -1s'
 alias la='ls -la'
 alias ll='ls -l'
@@ -70,3 +85,7 @@ function _update_ps1()
     export PS1="$($HOME/dev/src/github.com/milkbikis/powerline-shell/powerline-shell.py $?)"
 }
 export PROMPT_COMMAND="_update_ps1"
+
+# Homebrew Bash completion
+[ -d "/usr/local/etc/bash_completion.d" ] && source /usr/local/etc/bash_completion.d/*
+
