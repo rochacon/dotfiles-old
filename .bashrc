@@ -80,11 +80,34 @@ function mysql-ram {
 source "$HOME/dev/src/github.com/kennethreitz/autoenv/activate.sh"
 
 # Powerline-Bash
-function _update_ps1()
-{
-    export PS1="$($HOME/dev/src/github.com/milkbikis/powerline-shell/powerline-shell.py $?)"
+#function _update_ps1()
+#{
+#    export PS1="$($HOME/dev/src/github.com/milkbikis/powerline-shell/powerline-shell.py $?)"
+#}
+#export PROMPT_COMMAND="_update_ps1"
+
+# My simple PS1
+function _simple_ps1 {
+    PS1=""
+    
+    bold="$(tput bold)"
+    reset="$(tput sgr0)"
+
+    branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+    if [ ! -z $branch ]; then
+        [ "$(git status --porcelain 2>/dev/null)" ] && color="$(tput setaf 1)" || color="$(tput setaf 2)"
+        PS1="g:\[$color$bold\]$branch\[$reset\] $PS1"
+    fi
+
+    [ ! -z $VIRTUAL_ENV ] && PS1="e:\[$(tput setaf 4)$bold\]$(basename $VIRTUAL_ENV)\[$reset\] $PS1"
+    
+    if [ -z "$PS1" ]; then
+        export PS1="\w \$ "
+    else
+        export PS1="$PS1\w \$ "
+    fi
 }
-export PROMPT_COMMAND="_update_ps1"
+export PROMPT_COMMAND="_simple_ps1"
 
 # Homebrew Bash completion
 [ -d "/usr/local/etc/bash_completion.d" ] && source /usr/local/etc/bash_completion.d/*
